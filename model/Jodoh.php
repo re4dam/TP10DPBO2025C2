@@ -14,7 +14,12 @@ class Jodoh
 
     public function getAll()
     {
-        $query = "SELECT * FROM " . $this->table;
+        $query = "SELECT j.*, 
+                     d.name AS degenerate_name, 
+                     h.name AS haluan_name
+              FROM " . $this->table . " j
+              JOIN degenerates d ON j.id_degenerate = d.id
+              JOIN haluan h ON j.id_haluan = h.id";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -22,7 +27,12 @@ class Jodoh
 
     public function getById($id)
     {
-        $query = "SELECT * FROM " . $this->table . " WHERE id = :id";
+        $query = "SELECT j.*, 
+            d.name AS degenerate_name,
+            h.name AS haluan_name FROM " . $this->table . " j
+            JOIN degenerates d ON j.id_degenerate = d.id
+            JOIN haluans h ON j.id_haluan = h.id
+            WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
