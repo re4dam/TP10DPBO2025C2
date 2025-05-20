@@ -34,7 +34,7 @@ if ($entity == 'degenerate') {
     } elseif ($action == 'add') {
         require_once 'views/haluan_form.php';
     } elseif ($action == 'edit') {
-        $degenerate = $viewModel->getHaluanById($_GET['id']);
+        $haluan = $viewModel->getHaluanById($_GET['id']);
         require_once 'views/haluan_form.php';
     } elseif ($action == 'save') {
         $viewModel->addHaluan($_POST['name'], $_POST['height'], $_POST['weight'], $_POST['kelamin']);
