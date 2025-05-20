@@ -1,7 +1,7 @@
 <?php
 require_once 'config/Database.php';
 
-class Degenerate
+class Dege
 {
     private $conn;
     private $table = 'degenerate';
@@ -31,7 +31,7 @@ class Degenerate
 
     public function create($name, $height, $weight, $kelamin)
     {
-        $query = "INSERT INTO " . $this->table . " (name, height, weight, kelamin) (:name, :height, :weight, :kelamin)";
+        $query = "INSERT INTO " . $this->table . " (name, height, weight, kelamin) VALUES (:name, :height, :weight, :kelamin)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':height', $height);

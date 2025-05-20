@@ -20,7 +20,7 @@ if ($entity == 'degenerate') {
         $viewModel->addDegenerate($_POST['name'], $_POST['height'], $_POST['weight'], $_POST['kelamin']);
         header('Location: index.php?entity=degenerate');
     } elseif ($action == 'update') {
-        $viewModel->updateDegenerate($_POST['id'], $_POST['name'], $_POST['height'], $_POST['weight'], $_POST['kelamin']);
+        $viewModel->updateDegenerate($_GET['id'], $_POST['name'], $_POST['height'], $_POST['weight'], $_POST['kelamin']);
         header('Location: index.php?entity=degenerate');
     } elseif ($action == 'delete') {
         $viewModel->deleteDegenerate($_GET['id']);

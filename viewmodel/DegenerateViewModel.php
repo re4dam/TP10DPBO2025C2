@@ -7,7 +7,7 @@ class DegenerateViewModel
 
     public function __construct()
     {
-        $this->degenerate = new Degenerate();
+        $this->degenerate = new Dege();
     }
 
     public function getDegenerateList()
