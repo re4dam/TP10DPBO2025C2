@@ -18,7 +18,7 @@ class Jodoh
                      d.name AS degenerate_name, 
                      h.name AS haluan_name
               FROM " . $this->table . " j
-              JOIN degenerates d ON j.id_degenerate = d.id
+              JOIN degenerate d ON j.id_degenerate = d.id
               JOIN haluan h ON j.id_haluan = h.id";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -30,8 +30,8 @@ class Jodoh
         $query = "SELECT j.*, 
             d.name AS degenerate_name,
             h.name AS haluan_name FROM " . $this->table . " j
-            JOIN degenerates d ON j.id_degenerate = d.id
-            JOIN haluans h ON j.id_haluan = h.id
+            JOIN degenerate d ON j.id_degenerate = d.id
+            JOIN haluan h ON j.id_haluan = h.id
             WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
@@ -41,7 +41,7 @@ class Jodoh
 
     public function create($id_degenerate, $id_haluan)
     {
-        $query = "INSERT INTO " . $this->table . " (id_degenerate, id_haluan) (:id_degenerate, :id_haluan)";
+        $query = "INSERT INTO " . $this->table . " (id_degenerate, id_haluan) VALUES (:id_degenerate, :id_haluan)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id_degenerate', $id_degenerate);
         $stmt->bindParam(':id_haluan', $id_haluan);

@@ -12,7 +12,7 @@ class JodohViewModel
     public function __construct()
     {
         $this->jodoh = new Jodoh();
-        $this->degenerate = new Degenerate();
+        $this->degenerate = new Dege();
         $this->haluan = new Haluan();
     }
 

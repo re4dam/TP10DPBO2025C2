@@ -37,10 +37,10 @@ if ($entity == 'degenerate') {
         $haluan = $viewModel->getHaluanById($_GET['id']);
         require_once 'views/haluan_form.php';
     } elseif ($action == 'save') {
-        $viewModel->addHaluan($_POST['name'], $_POST['height'], $_POST['weight'], $_POST['kelamin']);
+        $viewModel->addHaluan($_POST['name'], $_POST['asal'], $_POST['kelamin'], $_POST['stereotipe']);
         header('Location: index.php?entity=haluan');
     } elseif ($action == 'update') {
-        $viewModel->updateHaluan($_POST['id'], $_POST['name'], $_POST['height'], $_POST['weight'], $_POST['kelamin']);
+        $viewModel->updateHaluan($_GET['id'], $_POST['name'], $_POST['asal'], $_POST['kelamin'], $_POST['stereotipe']);
         header('Location: index.php?entity=haluan');
     } elseif ($action == 'delete') {
         $viewModel->deleteHaluan($_GET['id']);
@@ -50,24 +50,24 @@ if ($entity == 'degenerate') {
     $viewModel = new JodohViewModel();
     if ($action == 'list') {
         $jodohList = $viewModel->getJodohList();
-        require_once 'views/staff_list.php';
+        require_once 'views/jodoh_list.php';
     } elseif ($action == 'add') {
         $degenerates = $viewModel->getDegenerates();
         $haluans = $viewModel->getHaluans();
-        require_once 'views/staff_form.php';
+        require_once 'views/jodoh_form.php';
     } elseif ($action == 'edit') {
         $jodoh = $viewModel->getJodohById($_GET['id']);
         $degenerates = $viewModel->getDegenerates();
         $haluans = $viewModel->getHaluans();
-        require_once 'views/staff_form.php';
+        require_once 'views/jodoh_form.php';
     } elseif ($action == 'save') {
-        $viewModel->addJodoh($_POST['name'], $_POST['department_id'], $_POST['shift_id']);
-        header('Location: index.php?entity=staff');
+        $viewModel->addJodoh($_POST['degenerate_id'], $_POST['haluan_id']);
+        header('Location: index.php?entity=jodoh');
     } elseif ($action == 'update') {
-        $viewModel->updateJodoh($_GET['id'], $_POST['name'], $_POST['department_id'], $_POST['shift_id']);
-        header('Location: index.php?entity=staff');
+        $viewModel->updateJodoh($_GET['id'], $_POST['degenerate_id'], $_POST['haluan_id']);
+        header('Location: index.php?entity=jodoh');
     } elseif ($action == 'delete') {
         $viewModel->deleteJodoh($_GET['id']);
-        header('Location: index.php?entity=staff');
+        header('Location: index.php?entity=jodoh');
     }
 }

@@ -31,7 +31,7 @@ class Haluan
 
     public function create($name, $asal, $kelamin, $stereotipe)
     {
-        $query = "INSERT INTO " . $this->table . " (name, asal, kelamin, stereotipe) (:name, :asal, :kelamin, :stereotipe)";
+        $query = "INSERT INTO " . $this->table . " (name, asal, kelamin, stereotipe) VALUES (:name, :asal, :kelamin, :stereotipe)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':asal', $asal);
