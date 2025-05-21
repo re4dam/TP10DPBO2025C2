@@ -15,8 +15,8 @@ require_once 'views/template/header.php';
             <td class="border p-2"><?php echo $jodoh['degenerate_name']; ?></td>
             <td class="border p-2"><?php echo $jodoh['haluan_name']; ?></td>
             <td class="border p-2">
-                <a href="index.php?entity=degenerate&action=edit&id=<?php echo $jodoh['id']; ?>" class="text-blue-500">Edit</a>
-                <a href="index.php?entity=degenerate&action=delete&id=<?php echo $jodoh['id']; ?>" class="text-red-500 ml-2" onclick="return confirm('Are you sure?');">Delete</a>
+                <a href="index.php?entity=jodoh&action=edit&id=<?php echo $jodoh['id']; ?>" class="text-blue-500">Edit</a>
+                <a href="index.php?entity=jodoh&action=delete&id=<?php echo $jodoh['id']; ?>" class="text-red-500 ml-2" onclick="return confirm('Are you sure?');">Delete</a>
             </td>
         </tr>
     <?php endforeach; ?>

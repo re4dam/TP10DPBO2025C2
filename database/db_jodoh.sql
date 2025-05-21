@@ -18,9 +18,9 @@ CREATE TABLE haluan (
 );
 
 CREATE TABLE jodoh (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     id_degenerate INT NOT NULL,
     id_haluan INT NOT NULL,
-    PRIMARY KEY (id_degenerate, id_haluan),
     FOREIGN KEY (id_degenerate) REFERENCES degenerate(id),
     FOREIGN KEY (id_haluan) REFERENCES haluan(id)
 );

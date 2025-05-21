@@ -32,7 +32,7 @@ class Jodoh
             h.name AS haluan_name FROM " . $this->table . " j
             JOIN degenerate d ON j.id_degenerate = d.id
             JOIN haluan h ON j.id_haluan = h.id
-            WHERE id = :id";
+            WHERE j.id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
