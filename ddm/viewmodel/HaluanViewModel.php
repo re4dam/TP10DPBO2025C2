@@ -32,6 +32,7 @@ class HaluanViewModel
 
     public function deleteHaluan($id)
     {
+        // This method will now return true if successful, or an error string if not.
         return $this->haluan->delete($id);
     }
 }

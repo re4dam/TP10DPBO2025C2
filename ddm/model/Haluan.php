@@ -5,11 +5,23 @@ class Haluan
 {
     private $conn;
     private $table = 'haluan';
+    private $jodohTable = 'jodoh'; // Add jodoh table name
 
     public function __construct()
     {
         $database = new Database();
         $this->conn = $database->getConnection();
+    }
+
+    // Method to check if the haluan ID is used in the jodoh table
+    public function isUsedInJodoh($id)
+    {
+        $query = "SELECT COUNT(*) as count FROM " . $this->jodohTable . " WHERE id_haluan = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['count'] > 0;
     }
 
     public function getAll()
@@ -54,9 +66,17 @@ class Haluan
 
     public function delete($id)
     {
+        // Check if the record is used in jodoh table
+        if ($this->isUsedInJodoh($id)) {
+            return "Cannot delete: This Haluan record is currently being used in Jodoh.";
+        }
+
         $query = "DELETE FROM " . $this->table . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id);
-        return $stmt->execute();
+        if ($stmt->execute()) {
+            return true;
+        }
+        return "Error deleting record."; // Or be more specific
     }
 }

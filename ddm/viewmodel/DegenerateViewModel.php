@@ -1,5 +1,5 @@
 <?php
-require_once 'model/Degenerate.php';
+require_once 'model/Degenerate.php'; // Make sure this is Dege.php if class name is Dege
 
 class DegenerateViewModel
 {
@@ -7,7 +7,7 @@ class DegenerateViewModel
 
     public function __construct()
     {
-        $this->degenerate = new Dege();
+        $this->degenerate = new Dege(); // Ensure class name matches
     }
 
     public function getDegenerateList()
@@ -32,6 +32,7 @@ class DegenerateViewModel
 
     public function deleteDegenerate($id)
     {
+        // This method will now return true if successful, or an error string if not.
         return $this->degenerate->delete($id);
     }
 }

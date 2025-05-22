@@ -1,0 +1,55 @@
+<?php
+require_once 'views/template/header.php';
+?>
+
+<?php if ($message_text !== null): ?>
+    <div class="mb-4 p-4 rounded-md <?php echo ($message_type === 'error') ? 'bg-red-100 border border-red-400 text-red-700' : 'bg-green-100 border border-green-400 text-green-700'; ?>" role="alert">
+        <span class="block sm:inline"><?php echo htmlspecialchars($message_text); ?></span>
+    </div>
+<?php endif; ?>
+
+<h2 class="text-2xl font-semibold mb-6">Degenerate List</h2>
+<a href="index.php?entity=degenerate&action=add" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg mb-6 inline-flex items-center transition duration-300 transform hover:scale-105">
+    <i class="fas fa-plus-circle mr-2"></i> Add Degenerate
+</a>
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <table class="min-w-full leading-normal">
+        <thead>
+            <tr class="bg-gray-800 text-white">
+                <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-sm uppercase font-semibold tracking-wider">Name</th>
+                <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-sm uppercase font-semibold tracking-wider">Height</th>
+                <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-sm uppercase font-semibold tracking-wider">Weight</th>
+                <th class="px-5 py-3 border-b-2 border-gray-700 text-left text-sm uppercase font-semibold tracking-wider">Kelamin</th>
+                <th class="px-5 py-3 border-b-2 border-gray-700 text-center text-sm uppercase font-semibold tracking-wider">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!empty($degenerateList)): ?>
+                <?php foreach ($degenerateList as $dege): ?>
+                    <tr class="hover:bg-gray-50 transition duration-150 ease-in-out">
+                        <td class="px-5 py-4 border-b border-gray-200 bg-white text-sm"><?php echo htmlspecialchars($dege['name']); ?></td>
+                        <td class="px-5 py-4 border-b border-gray-200 bg-white text-sm"><?php echo htmlspecialchars($dege['height']); ?></td>
+                        <td class="px-5 py-4 border-b border-gray-200 bg-white text-sm"><?php echo htmlspecialchars($dege['weight']); ?></td>
+                        <td class="px-5 py-4 border-b border-gray-200 bg-white text-sm"><?php echo htmlspecialchars($dege['kelamin']); ?></td>
+                        <td class="px-5 py-4 border-b border-gray-200 bg-white text-sm text-center">
+                            <a href="index.php?entity=degenerate&action=edit&id=<?php echo $dege['id']; ?>" class="text-blue-600 hover:text-blue-900 mr-3 transition duration-300">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a href="index.php?entity=degenerate&action=delete&id=<?php echo $dege['id']; ?>" class="text-red-600 hover:text-red-900 transition duration-300" onclick="return confirm('Are you sure you want to delete this record?');">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="5" class="px-5 py-4 border-b border-gray-200 bg-white text-sm text-center">No records found.</td>
+                </tr>
+            <?php endif; ?>
+        </tbody>
+    </table>
+</div>
+
+<?php
+require_once 'views/template/footer.php';
+?>
