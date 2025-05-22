@@ -3,7 +3,7 @@ Saya Zaki Adam dengan NIM 2304934 mengerjakan Tugas Praktikum 10 dalam mata kuli
 
 # Degenerate Database Management
 ## Desain Database
-![ERD](TP10.png)
+![ERD](dokumentasi/TP10.png)
 
 ### 1. **degenerate**
 
